@@ -1,0 +1,14 @@
+[build]
+  command = "cd frontend && npm ci && npm run build"
+  # Angular 19 puts static files under dist/<project>/browser by default
+  publish = "frontend/dist/frontend/browser"
+
+# SPA fallback so deep links work
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "PORT,BASE_URL,CURRENCY_API_KEY"
+  SECRETS_SCAN_OMIT_PATHS = "backend/**,frontend/proxy.conf.json,frontend/dist/**"
