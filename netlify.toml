@@ -3,6 +3,13 @@
   # Angular 19 puts static files under dist/<project>/browser by default
   publish = "frontend/dist/frontend/browser"
 
+# Proxy all /api/* requests to your Render backend
+[[redirects]]
+  from = "/api/*"
+  to = "https://currency-project-9od0.onrender.com/api/:splat"
+  status = 200
+  force = true
+
 # SPA fallback so deep links work
 [[redirects]]
   from = "/*"

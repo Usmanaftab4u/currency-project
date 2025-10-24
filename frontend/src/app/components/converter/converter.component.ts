@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
+import { MatNativeDateModule, provideNativeDateAdapter, MatOptionModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon'; 
 import { ApiService } from '../../services/api.service';
 import { HistoryService } from '../../services/history.service';
@@ -27,6 +27,7 @@ import { AmountOnlyDirective } from '../../directives/amount-only.directive';
     MatProgressSpinnerModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatOptionModule,
     MatIconModule,
     AmountOnlyDirective,
   ],
@@ -39,7 +40,7 @@ import { AmountOnlyDirective } from '../../directives/amount-only.directive';
         <div class="row row-2" style="margin-top:12px">
           <mat-form-field appearance="outline">
             <mat-label>From</mat-label>
-            <mat-select [ngModel]="from()" (ngModelChange)="from.set($event)">
+            <mat-select [value]="from()" (selectionChange)="from.set($event.value)">
               <mat-option *ngFor="let c of currencyCodes()" [value]="c">
                 {{ c }} - {{ names()[c] }}
               </mat-option>
@@ -48,7 +49,7 @@ import { AmountOnlyDirective } from '../../directives/amount-only.directive';
 
           <mat-form-field appearance="outline">
             <mat-label>To</mat-label>
-            <mat-select [ngModel]="to()" (ngModelChange)="to.set($event)">
+            <mat-select [value]="to()" (selectionChange)="to.set($event.value)">
               <mat-option *ngFor="let c of currencyCodes()" [value]="c">
                 {{ c }} - {{ names()[c] }}
               </mat-option>
