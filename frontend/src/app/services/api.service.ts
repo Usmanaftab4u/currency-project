@@ -6,7 +6,7 @@ export class ApiService {
   private http = inject(HttpClient);
   // If backend on same Hostinger domain under /api, this just works.
   // Otherwise set full URL here (e.g., https://api.yourdomain.com/api)
-  private base = '/api';
+  private base = 'https://currency-project-9od0.onrender.com/api';
 
   getCurrencies() {
     // typed to the normalized shape returned by your backend
